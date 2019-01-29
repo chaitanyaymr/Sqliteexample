@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+     Users Data 
+    </ion-title>
+    <ion-buttons >
+      <button ion-button icon-only (click)="getUsers()">
+        <ion-icon name="refresh-circle" style="color:green"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addData()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ <h2>Users List:</h2>
+ <ion-list>
+   <ion-item-sliding *ngFor="let user of users;let i=index">
+     <ion-item nopadding>
+        <p>
+          <span>{{user.Name}}</span><br>
+          <span>{{user.Phone}}</span>
+          <ion-buttons end>
+              <button ion-button icon-only (click)="editData(user.id)">
+                  <ion-icon name="share"></ion-icon>
+                </button>
+            <button ion-button icon-only (click)="deleteUser(user.id)">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+          </ion-buttons>
+        </p>
+     </ion-item>
+     <!-- <ion-item-options side="right">
+        <button ion-button color="primary" (click)="editData(user.id)">
+            <ion-icon name="paper"></ion-icon>
+          </button>
+          <button ion-button color="danger" (click)="deleteUser(user.id)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+     </ion-item-options> -->
+
+   </ion-item-sliding>
+ </ion-list>
+ <ion-list *ngIf="users?.length<=0">
+    <ion-item>
+      <h3>No Users Found</h3>
+    </ion-item>
+ </ion-list>
+</ion-content>
